@@ -9,6 +9,51 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 Nothing yet.
 
+## [0.2.0] - 2026-09-16
+
+Eleven changes requested in `TO-BE-CHANGED.md`, covering navigation, hero
+layout, typography, the client carousel, the quote form and translation.
+
+### Added
+
+- Language switcher in the header, offering German, Spanish, French and English.
+  It mirrors blucp.com: the alternatives slide out on hover or focus, and the
+  translation is driven by Google Translate through the `googtrans` cookie. The
+  engine is loaded only when a non-English translation is active, so English
+  visitors never run it.
+- Every client logo in the carousel now links to that client's own website,
+  opening in a new tab. Thirty-six of the thirty-seven logos are linked; Agro
+  Farming has no published address, so it stays unlinked rather than guessed.
+- A full heading scale from H1 to H6, each level a clear step below the one
+  above it, replacing a scale that defined only H1 to H3.
+- Required fields in the quotation form are marked with an asterisk, alongside a
+  legend explaining the marker.
+
+### Changed
+
+- The logo links to blucp.com, and "Representative of M&A Worldwide" links to
+  m-a-worldwide.com. They are now two separate links rather than one nested
+  inside the other.
+- The three hero claims lost the circular background behind their icons. The
+  icons are larger, and their titles and supporting lines are larger too, capped
+  at the H4/H5 step of the scale.
+- The hero's supporting text, its two buttons and the line below them are
+  centred, and the block now sits level with the looping video.
+- The price line under the hero buttons is italic and smaller, so it reads as a
+  footnote to the buttons rather than as body copy.
+- Each section fills the viewport and centres its content, with proximity
+  scroll-snapping, following the pattern defined on blucp.com. The hero
+  subtracts the sticky header's height so its last line is not clipped. Both are
+  disabled below 761px wide or 640px tall, where content is taller than the
+  screen.
+- "Our clients" now follows the H3 size rather than sitting between H2 and H3.
+
+### Fixed
+
+- The FAQ accordion opens and closes with an animation. `<details>` gives no
+  transition of its own, so the panel height is animated directly and the
+  element is held open for the length of the closing animation.
+
 ## [0.1.0] - 2026-09-16
 
 Initial landing page, built to Part 0 of the *Valuation Business Line - Technical

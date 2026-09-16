@@ -3,6 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Guard React's reconciler against Google Translate's text-node rewrites (prevents NotFoundError white screens) -->
+    <script>
+      (function () {
+        if (typeof Node !== 'function' || !Node.prototype) return;
+        var rm = Node.prototype.removeChild;
+        Node.prototype.removeChild = function (child) {
+          if (child.parentNode !== this) return child;
+          return rm.apply(this, arguments);
+        };
+        var ins = Node.prototype.insertBefore;
+        Node.prototype.insertBefore = function (newNode, referenceNode) {
+          if (referenceNode && referenceNode.parentNode !== this) return newNode;
+          return ins.apply(this, arguments);
+        };
+      })();
+    </script>
+    <!-- Google Translate: hide its injected UI; our own switcher drives it via the googtrans cookie -->
+    <style>
+      .goog-te-banner-frame, .goog-te-gadget, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+      body { top: 0 !important; position: static !important; }
+      .goog-text-highlight { background: none !important; box-shadow: none !important; }
+      #google_translate_element { display: none !important; }
+    </style>
     <title>Business Valuation Quote in 60 Seconds | Blu Capital Partners</title>
     <meta
       name="description"
@@ -25,5 +48,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Google Translate engine: loaded ONLY when a non-English translation is active,
+         so default (EN) sessions never run it and React stays untouched. -->
+    <div id="google_translate_element"></div>
+    <script>
+      (function () {
+        if (!/(^|;\s*)googtrans=\/[a-z]{2}\/(?!en\b)[a-z]{2}/.test(document.cookie)) return;
+        window.googleTranslateElementInit = function () {
+          new google.translate.TranslateElement(
+            { pageLanguage: 'en', includedLanguages: 'en,fr,de,es', autoDisplay: false },
+            'google_translate_element'
+          );
+        };
+        var s = document.createElement('script');
+        s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.body.appendChild(s);
+      })();
+    </script>
   </body>
 </html>

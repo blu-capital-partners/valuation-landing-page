@@ -53,6 +53,9 @@ export default function QuoteSection() {
           <p>
             Takes about a minute. Only the essentials are required, and nothing is charged until you sign.
           </p>
+          <p className="quote-section__required">
+            Fields marked <span className="field__req" aria-hidden="true">*</span> are required.
+          </p>
           <ul className="next">
             <li>Your quote arrives by email in under 60 seconds.</li>
             <li>The email links to the valuation request form. Once you submit it, your engagement letter is generated automatically.</li>
@@ -82,27 +85,27 @@ export default function QuoteSection() {
             <form className="form" onSubmit={onSubmit} noValidate={false}>
               <div className="form__grid">
                 <label className="field field--full">
-                  <span className="field__label">Company</span>
+                  <span className="field__label">Company <span className="field__req" aria-hidden="true">*</span></span>
                   <input name="companyName" autoComplete="organization" required {...aria('companyName')} />
                   {err('companyName')}
                 </label>
                 <label className="field">
-                  <span className="field__label">First name</span>
+                  <span className="field__label">First name <span className="field__req" aria-hidden="true">*</span></span>
                   <input name="firstName" autoComplete="given-name" required minLength={2} {...aria('firstName')} />
                   {err('firstName')}
                 </label>
                 <label className="field">
-                  <span className="field__label">Last name</span>
+                  <span className="field__label">Last name <span className="field__req" aria-hidden="true">*</span></span>
                   <input name="lastName" autoComplete="family-name" required minLength={2} {...aria('lastName')} />
                   {err('lastName')}
                 </label>
                 <label className="field field--full">
-                  <span className="field__label">Work email address</span>
+                  <span className="field__label">Work email address <span className="field__req" aria-hidden="true">*</span></span>
                   <input name="email" type="email" autoComplete="email" required {...aria('email')} />
                   {err('email')}
                 </label>
                 <label className="field">
-                  <span className="field__label">Annual revenue (EUR million)</span>
+                  <span className="field__label">Annual revenue (EUR million) <span className="field__req" aria-hidden="true">*</span></span>
                   <input
                     name="revenueEurM"
                     type="number"
@@ -141,7 +144,7 @@ export default function QuoteSection() {
                 <label className="consent field--full">
                   <input type="checkbox" name="consent" required {...aria('consent')} />
                   <span>
-                    {QUOTE_CONSENT_TEXT} I have read the{' '}
+                    <span className="field__req" aria-hidden="true">*</span> {QUOTE_CONSENT_TEXT} I have read the{' '}
                     <a href={CONTACT.privacyUrl} target="_blank" rel="noreferrer">
                       Privacy Policy
                     </a>{' '}

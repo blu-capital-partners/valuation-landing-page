@@ -40,11 +40,27 @@ export default function Trust() {
           {/* Continuous marquee, as on blucp.com: the list is rendered twice so the loop is seamless */}
           <div className="marquee">
             <div className="marquee__track">
-              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((l, i) => (
-                <div className="logobox" key={`${l.alt}-${i}`} aria-hidden={i >= CLIENT_LOGOS.length}>
-                  <img src={l.src} alt={i >= CLIENT_LOGOS.length ? '' : l.alt} loading="lazy" />
-                </div>
-              ))}
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((l, i) => {
+                const duplicate = i >= CLIENT_LOGOS.length
+                const logo = <img src={l.src} alt={duplicate ? '' : l.alt} loading="lazy" />
+                // The duplicated half is decorative, so it must not be reachable by keyboard.
+                return l.href && !duplicate ? (
+                  <a
+                    className="logobox logobox--link"
+                    key={`${l.alt}-${i}`}
+                    href={l.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={`${l.alt} website`}
+                  >
+                    {logo}
+                  </a>
+                ) : (
+                  <div className="logobox" key={`${l.alt}-${i}`} aria-hidden={duplicate}>
+                    {logo}
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>

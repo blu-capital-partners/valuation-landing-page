@@ -26,6 +26,15 @@ export const LANGUAGES = [
   { code: 'es', label: 'Español' },
 ] as const
 
+// Languages offered by the header switcher, in the order and codes used on blucp.com.
+// Romanian is deliberately absent there, so it is absent here too.
+export const TRANSLATE_LANGUAGES = [
+  ['de', 'DE'],
+  ['es', 'ES'],
+  ['fr', 'FR'],
+  ['en', 'EN'],
+] as const
+
 // Wording required by the briefing, section 0.5.
 export const QUOTE_CONSENT_TEXT =
   'I consent to the processing of my personal data for the purpose of receiving a valuation quotation.'
