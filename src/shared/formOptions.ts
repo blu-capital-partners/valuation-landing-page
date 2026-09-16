@@ -35,6 +35,14 @@ export const TRANSLATE_LANGUAGES = [
   ['en', 'EN'],
 ] as const
 
+// Same set in reading order for the mobile picker, which has room for full names.
+export const TRANSLATE_PICKER = [
+  ['en', 'EN', 'English'],
+  ['de', 'DE', 'Deutsch'],
+  ['es', 'ES', 'Español'],
+  ['fr', 'FR', 'Français'],
+] as const
+
 // Wording required by the briefing, section 0.5.
 export const QUOTE_CONSENT_TEXT =
   'I consent to the processing of my personal data for the purpose of receiving a valuation quotation.'

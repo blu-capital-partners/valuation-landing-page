@@ -9,6 +9,27 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 Nothing yet.
 
+## [0.5.0] - 2026-09-16
+
+Two follow-up changes requested in `TO-BE-CHANGED.md`.
+
+### Added
+
+- On screens narrower than 761px the language selector is a wheel in the manner
+  of an iOS picker, following Apple's Pickers guidance: tapping the current
+  language opens a list that scrolls under a fixed selection band, snaps to a
+  row, and applies the language once the scrolling settles. Rows fade toward the
+  edges so the band reads as the selection, a row can also be tapped directly,
+  and Escape or a tap outside closes it. The header has no room for a wheel
+  inline, so it opens as a popover beneath it. The desktop switcher, where the
+  alternatives slide out on hover, is unchanged.
+
+### Fixed
+
+- "Get my quote" wrapped onto two lines on mobile, making the button 52px tall
+  inside a 77px header. It is held on one line and the header row's gap is
+  tightened, so the button is 121x40 and sits within the header.
+
 ## [0.4.0] - 2026-09-16
 
 Four follow-up changes requested in `TO-BE-CHANGED.md`.

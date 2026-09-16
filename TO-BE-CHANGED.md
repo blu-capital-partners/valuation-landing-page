@@ -18,10 +18,16 @@ Useful to include when you have it:
 ## Requested
 
 <!-- Add your items below this line. One per bullet. -->
-- fix the get my quote button on the mobile version
-- for the language selector in the mobile version, do a slider similar to the alarm slider from iOS called "Pickers" https://developer.apple.com/design/human-interface-guidelines/pickers
 
 ## Done
+
+Shipped 2026-09-16 (fourth round):
+
+- "Get my quote" no longer wraps to two lines on mobile; the button fits the
+  header again
+- The mobile language selector is now a wheel in the manner of an iOS picker:
+  it scrolls under a fixed selection band, snaps to a row and applies once it
+  settles. The desktop switcher is unchanged
 
 Shipped 2026-09-16 (third round):
 
