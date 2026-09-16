@@ -473,11 +473,9 @@ a {
 .hero__copy {
   grid-area: copy;
   align-self: center;
-  text-align: center;
 }
 .hero__lede {
   margin-top: 0;
-  margin-inline: auto;
   font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
   color: var(--slate);
   max-width: 42ch;
@@ -485,7 +483,6 @@ a {
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 12px;
   margin-top: 32px;
 }
@@ -833,13 +830,16 @@ a {
   overflow: hidden;
 }
 .logobox--link {
+  position: relative;
   text-decoration: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
-.logobox--link:hover {
+.logobox--link:hover,
+.logobox--link:focus-visible {
+  z-index: 1;
   border-color: var(--sky);
-  box-shadow: 0 8px 20px -12px rgba(0, 22, 63, 0.5);
-  transform: translateY(-2px);
+  background: var(--paper);
+  box-shadow: 0 6px 16px -10px rgba(0, 22, 63, 0.45);
 }
 .logobox img {
   /* Fill the box and let object-fit decide: square marks get the full height,
@@ -1090,7 +1090,7 @@ a {
   border-top: 1px solid var(--mist);
   color: var(--navy);
   font-size: 0.9375rem;
-  padding-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(40px, 5vw, 64px);
 }
 .site-footer a {
   color: var(--navy);
@@ -1103,13 +1103,13 @@ a {
 
 .newsletter {
   text-align: center;
-  padding-bottom: clamp(48px, 6vw, 72px);
+  padding-bottom: clamp(32px, 4vw, 52px);
 }
 .newsletter__title {
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-  max-width: 24ch;
+  max-width: 28ch;
   margin-inline: auto;
 }
 .newsletter__title em {
@@ -1117,8 +1117,8 @@ a {
   font-style: italic;
 }
 .newsletter__lede {
-  margin: 16px auto 0;
-  max-width: 62ch;
+  margin: 12px auto 0;
+  max-width: 68ch;
   color: var(--slate);
 }
 .newsletter__form {
@@ -1126,7 +1126,7 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 20px;
 }
 .newsletter__form input {
   width: min(280px, 100%);
@@ -1148,7 +1148,7 @@ a {
   font-size: 0.875rem;
 }
 .newsletter__fine {
-  margin-top: 14px;
+  margin-top: 10px;
   font-size: 0.8125rem;
   color: var(--slate);
 }
@@ -1160,8 +1160,8 @@ a {
 .site-footer__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 0.8fr) minmax(0, 1.1fr);
-  gap: clamp(28px, 4vw, 48px);
-  padding-block: clamp(32px, 4vw, 48px);
+  gap: clamp(24px, 3vw, 40px);
+  padding-block: clamp(24px, 3vw, 36px);
   align-items: start;
 }
 .site-footer__brand img {
@@ -1169,7 +1169,7 @@ a {
   height: auto;
 }
 .site-footer__brand p {
-  margin-top: 20px;
+  margin-top: 14px;
   color: var(--slate);
   font-size: 0.875rem;
 }
@@ -1179,17 +1179,18 @@ a {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--navy);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .site-footer__col ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: 7px;
+  line-height: 1.45;
 }
 .site-footer__contact ul {
-  gap: 14px;
+  gap: 10px;
 }
 .site-footer__contact li {
   display: grid;
@@ -1203,7 +1204,7 @@ a {
   margin-top: 2px;
 }
 .site-footer__base {
-  padding-block: 20px 28px;
+  padding-block: 14px 20px;
   border-top: 1px solid var(--mist);
   text-align: center;
   font-size: 0.8125rem;
@@ -1491,4 +1492,61 @@ a {
     justify-content: center;
     scroll-snap-align: start;
   }
+}
+
+/* Scroll-to-next-section control, following blucp.com */
+.scrolldown {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(16px, 3vh, 30px);
+  transform: translateX(-50%);
+  z-index: 30;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--navy);
+  background: rgba(1, 31, 91, 0.08);
+  opacity: 0.85;
+  animation: bob 1.8s ease-in-out infinite;
+  transition: opacity 0.3s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.scrolldown:hover {
+  opacity: 1;
+  background: rgba(1, 31, 91, 0.16);
+  color: var(--orange);
+}
+/* Over the navy quote section */
+.scrolldown--dark {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+}
+.scrolldown--dark:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: var(--white);
+}
+.scrolldown.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+/* The cookie banner shares the bottom edge, so the control steps aside for it. */
+.cookie ~ .scrolldown,
+body:has(.cookie) .scrolldown {
+  opacity: 0;
+  pointer-events: none;
 }

@@ -1,16 +1,24 @@
-import { useRef, useState, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { FAQ } from '../content'
 
 const DURATION = 260
 const EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
 
-// <details> snaps open with no transition, so the panel height is animated here instead.
-// On close the element stays open for the length of the animation and collapses at the end.
-function FaqItem({ q, a }: { q: string; a: string }) {
+type ItemProps = {
+  q: string
+  a: string
+  open: boolean
+  onOpen: () => void
+  onClose: () => void
+}
+
+// <details> snaps open with no transition, so the panel height is animated here.
+// On close the element is held open for the length of the animation and
+// collapses at the end.
+function FaqItem({ q, a, open, onOpen, onClose }: ItemProps) {
   const detailsRef = useRef<HTMLDetailsElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const animation = useRef<Animation | null>(null)
-  const [open, setOpen] = useState(false)
 
   function run(from: number, to: number, onDone?: () => void) {
     const panel = panelRef.current
@@ -26,33 +34,46 @@ function FaqItem({ q, a }: { q: string; a: string }) {
     }
   }
 
-  function onToggle(e: MouseEvent<HTMLElement>) {
-    e.preventDefault()
+  function collapse() {
+    const details = detailsRef.current
+    const panel = panelRef.current
+    if (!details || !panel || !details.open) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      details.open = false
+      return
+    }
+    run(panel.getBoundingClientRect().height, 0, () => {
+      details.open = false
+    })
+  }
+
+  function expand() {
     const details = detailsRef.current
     const panel = panelRef.current
     if (!details || !panel) return
+    details.open = true
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // scrollHeight is only meaningful once open, so measure here and rise from zero.
+    run(0, panel.scrollHeight)
+  }
 
-    const instant = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    if (details.open) {
-      setOpen(false)
-      if (instant) {
-        details.open = false
-        return
-      }
-      // Measure before collapsing, then run down to zero.
-      run(panel.getBoundingClientRect().height, 0, () => {
-        details.open = false
-      })
+  function onToggle(e: MouseEvent<HTMLElement>) {
+    e.preventDefault()
+    if (detailsRef.current?.open) {
+      onClose()
+      collapse()
     } else {
-      details.open = true
-      setOpen(true)
-      if (instant) return
-      // scrollHeight is only meaningful once the element is open, so measure here
-      // and animate up from zero rather than from the height it already has.
-      run(0, panel.scrollHeight)
+      onOpen()
+      expand()
     }
   }
+
+  // Collapse when the parent hands the open slot to another question.
+  useEffect(() => {
+    if (!open && detailsRef.current?.open) collapse()
+    // collapse reads refs only, so it does not belong in the dependency list
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open])
 
   return (
     <details className="faq__item" ref={detailsRef}>
@@ -67,6 +88,9 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function Faq() {
+  // One open item at a time: opening a question closes whichever was open.
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null)
+
   return (
     <section id="faq" className="section section--paper" aria-labelledby="faq-title">
       <div className="wrap faq">
@@ -75,7 +99,14 @@ export default function Faq() {
         </div>
         <div className="faq__list">
           {FAQ.map((item) => (
-            <FaqItem key={item.q} q={item.q} a={item.a} />
+            <FaqItem
+              key={item.q}
+              q={item.q}
+              a={item.a}
+              open={openQuestion === item.q}
+              onOpen={() => setOpenQuestion(item.q)}
+              onClose={() => setOpenQuestion(null)}
+            />
           ))}
         </div>
       </div>

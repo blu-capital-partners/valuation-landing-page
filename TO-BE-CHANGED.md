@@ -20,8 +20,17 @@ Useful to include when you have it:
 <!-- Add your items below this line. One per bullet. -->
 
 
-
 ## Done
+
+Shipped 2026-09-16 (second round):
+
+- The supporting text, the buttons and the line below them are left-aligned
+- Added the scroll-to-next-section control from blucp.com; every section fills
+  the screen with its content centred
+- Hovering a carousel logo no longer lets it overlap its neighbours
+- Opening an FAQ question closes whichever one was already open
+- Footer shortened to blucp.com's density: 788px against their 900px, down
+  from 985px
 
 Shipped 2026-09-16:
 

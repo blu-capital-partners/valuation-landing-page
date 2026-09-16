@@ -9,6 +9,34 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 Nothing yet.
 
+## [0.3.0] - 2026-09-16
+
+Five follow-up changes requested in `TO-BE-CHANGED.md`.
+
+### Added
+
+- A scroll-to-next-section control, following the one on blucp.com: a round
+  chevron pinned to the bottom of the viewport with a slow bob. It advances from
+  whichever section you are in rather than only off the hero, inverts to white
+  over the navy quote section, and steps aside at the foot of the page and while
+  the cookie banner is showing.
+
+### Changed
+
+- The hero's supporting text, its two buttons and the line below them are
+  left-aligned again. The block still sits level with the looping video.
+- The footer matches blucp.com's vertical density. Measured at 1440x900 it is
+  now 788px against their 900px, down from 985px, through tighter list rows,
+  newsletter spacing and legal band. No links were removed.
+
+### Fixed
+
+- Hovering a logo in the client carousel no longer lets it overlap its
+  neighbours. The hover lift is gone; the card keeps its 20px gaps and changes
+  only its border and ground, raised a layer so its shadow is not clipped.
+- Opening an FAQ question now closes whichever one was already open, so only one
+  answer is visible at a time.
+
 ## [0.2.0] - 2026-09-16
 
 Eleven changes requested in `TO-BE-CHANGED.md`, covering navigation, hero
