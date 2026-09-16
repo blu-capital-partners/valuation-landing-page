@@ -1,0 +1,9 @@
+{
+  // VS Code Live Server (ritwickdey.LiveServer) serves the static preview build.
+  // Run `npm run build:preview` first; Live Server reloads when dist changes.
+  "liveServer.settings.root": "/dist/",
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.AdvanceCustomBrowserCmdLine": "Google Chrome"
+}
