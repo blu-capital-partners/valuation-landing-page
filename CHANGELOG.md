@@ -9,6 +9,29 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 Nothing yet.
 
+## [0.4.0] - 2026-09-16
+
+Four follow-up changes requested in `TO-BE-CHANGED.md`.
+
+### Changed
+
+- The trust block is now two sections. "Valuations founders and CFOs rely on"
+  keeps the introduction and the credentials counter, centred on its own screen;
+  the testimonials and the "Our clients" carousel move to a new `#clients`
+  section on the pale ground. The page is now seven full-screen sections.
+- Hovering a logo in the client carousel no longer paints outside the card. The
+  outward drop shadow is replaced by an inset ring, so the highlight is bounded
+  by the card's own box whatever its neighbours do.
+- The footer copyright is centred beneath the logo, and the gap between them
+  drops from 14px to 6px.
+
+### Fixed
+
+- On screens narrower than 761px the three hero claims are stacked and share one
+  left edge. They were each centred individually, so "Accurate" - the widest at
+  325px against roughly 215px for the others - sat about 54px further left than
+  the rest. All three icons now start at the same x.
+
 ## [0.3.0] - 2026-09-16
 
 Five follow-up changes requested in `TO-BE-CHANGED.md`.

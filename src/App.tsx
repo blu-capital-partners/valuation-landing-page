@@ -4,7 +4,7 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Pricing from './components/Pricing'
-import Trust from './components/Trust'
+import { Trust, Clients } from './components/Trust'
 import QuoteSection from './components/QuoteSection'
 import Faq from './components/Faq'
 import Footer from './components/Footer'
@@ -28,6 +28,7 @@ export default function App() {
         <HowItWorks />
         <Pricing />
         <Trust />
+        <Clients />
         <QuoteSection />
         <Faq />
       </main>
