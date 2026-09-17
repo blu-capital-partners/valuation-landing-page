@@ -9,6 +9,17 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 Nothing yet.
 
+## [0.6.2] - 2026-09-17
+
+### Removed
+
+- Page-level scroll snapping. `scroll-snap-type: y proximity` on the document
+  and `scroll-snap-align: start` on each band meant the page pulled the scroll
+  position onto a section boundary after every gesture. Scrolling is now left
+  entirely to the visitor and rests wherever they leave it. Sections keep their
+  full-screen height and centred content; the language picker's own wheel keeps
+  its snapping, which is what makes it a picker.
+
 ## [0.6.1] - 2026-09-17
 
 ### Removed

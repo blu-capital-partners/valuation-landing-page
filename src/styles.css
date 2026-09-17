@@ -1475,20 +1475,16 @@ a {
 }
 
 /* Full-screen sections, following the pattern defined on blucp.com:
-   every section fills the viewport and centres its content, with proximity
-   snapping so scrolling settles on a section without trapping the user.
+   every section fills the viewport and centres its content. Scrolling is left
+   entirely to the visitor: no snapping.
    Disabled on short or narrow viewports, where content is taller than the screen. */
 @media (min-width: 761px) and (min-height: 640px) {
-  html {
-    scroll-snap-type: y proximity;
-  }
   .section,
   .quote-section {
     min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    scroll-snap-align: start;
   }
   /* The hero is the one section that shares the viewport with the sticky header. */
   .hero {
@@ -1496,7 +1492,6 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    scroll-snap-align: start;
   }
 }
 
@@ -1649,6 +1644,5 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    scroll-snap-align: start;
   }
 }

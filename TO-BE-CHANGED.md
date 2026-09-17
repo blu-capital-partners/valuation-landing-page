@@ -23,7 +23,8 @@ Useful to include when you have it:
 
 Shipped 2026-09-17 (sixth round):
 
-- Removed the scroll assistant entirely
+- Removed the scroll assistant entirely: the return-to-top button, and the
+  page-level scroll snapping that pulled each gesture onto a section boundary
 
 Shipped 2026-09-17 (fifth round):
 
