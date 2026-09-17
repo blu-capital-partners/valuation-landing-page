@@ -21,12 +21,15 @@ Useful to include when you have it:
 
 ## Done
 
+Shipped 2026-09-17 (sixth round):
+
+- Removed the scroll assistant entirely
+
 Shipped 2026-09-17 (fifth round):
 
 - Section padding is one value everywhere: all eight bands are 112px top and
   bottom, where the hero was 72px and the footer 64/0
-- Removed the chevron; added a return-to-top button that appears once you are a
-  screen down
+- Removed the chevron scroll control
 - Translations no longer break the layout: the header keeps one row, the hero
   punctuation stays attached, and the counter is exempt from translation
 - The stats counter animates when it scrolls into view

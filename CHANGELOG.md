@@ -9,6 +9,14 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 Nothing yet.
 
+## [0.6.1] - 2026-09-17
+
+### Removed
+
+- The scroll assistant. The return-to-top button added in 0.6.0 is gone, along
+  with its styles and the rule that hid it behind the cookie banner. Nothing now
+  floats over the page except the cookie banner itself.
+
 ## [0.6.0] - 2026-09-17
 
 Nine follow-up changes requested in `TO-BE-CHANGED.md`.
