@@ -36,10 +36,17 @@ export function TargetArrowIcon() {
         <circle cx="12" cy="12" r="5" />
       </g>
       <circle className="icon__bull" cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" />
+      {/* A real arrow: shaft, a solid head landing in the bullseye, and fletching
+          at the tail. It is drawn at rest, not only while the badge is hovered. */}
       <g className="icon__arrow" stroke="var(--orange)">
-        <path d="M22 2 13.2 10.8" />
-        <path d="M13.6 13.2 12 12l1.2-1.6" fill="var(--orange)" />
-        <path d="M19.4 2.2 22 2l-.2 2.6" />
+        <path d="M20.8 3.2 14.6 9.4" />
+        <polygon
+          points="12.4,11.6 15.5,10.8 13.2,8.5"
+          fill="var(--orange)"
+          stroke="var(--orange)"
+          strokeWidth="1.1"
+        />
+        <path d="M17.7 3.2h3.1v3.1" />
       </g>
     </svg>
   )

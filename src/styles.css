@@ -16,6 +16,7 @@
   --radius: 6px;
   --wrap: 1180px;
   --header-h: 77px;
+  --section-pad: clamp(64px, 9vw, 112px);
   --gutter: clamp(16px, 4vw, 40px);
 }
 
@@ -176,6 +177,9 @@ a {
 .btn--outline:hover {
   background: var(--paper);
 }
+.site-header .btn--small {
+  white-space: nowrap;
+}
 .btn--small {
   min-height: 40px;
   padding: 8px 18px;
@@ -205,7 +209,7 @@ a {
 .site-header__inner {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: clamp(14px, 1.8vw, 32px);
   min-height: 76px;
 }
 .brand {
@@ -292,12 +296,15 @@ a {
 }
 .site-nav {
   display: flex;
-  gap: 28px;
+  gap: clamp(14px, 1.6vw, 28px);
 }
 .site-nav a {
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
+  /* Translations run longer than the English: keep each item on one line
+     rather than letting the header grow a second row. */
+  white-space: nowrap;
 }
 .site-nav a:hover {
   color: var(--orange-hover);
@@ -307,7 +314,7 @@ a {
 .hero {
   background: var(--white);
   color: var(--ink);
-  padding-block: clamp(40px, 5vw, 80px);
+  padding-block: var(--section-pad);
   border-bottom: 1px solid var(--mist);
 }
 .hero__grid {
@@ -376,7 +383,6 @@ a {
 .icon__arrow {
   transform-box: view-box;
   transform-origin: 12px 12px;
-  opacity: 0;
 }
 .icon__rings,
 .icon__bull {
@@ -384,10 +390,10 @@ a {
   transform-origin: 12px 12px;
 }
 .badge--accurate:hover .icon__arrow {
-  animation: arrow-land 1.6s cubic-bezier(0.3, 0.9, 0.3, 1) infinite;
+  animation: arrow-land 0.7s cubic-bezier(0.3, 0.9, 0.3, 1) both;
 }
 .badge--accurate:hover .icon__rings {
-  animation: target-impact 1.6s ease-out infinite;
+  animation: target-impact 0.7s ease-out;
 }
 
 /* Fully digital: code rains down the screen */
@@ -415,21 +421,12 @@ a {
   }
 }
 @keyframes arrow-land {
-  0% {
+  from {
     opacity: 0;
-    transform: translate(9px, -9px) scale(1.05);
+    transform: translate(10px, -10px) scale(1.05);
   }
-  10% {
+  to {
     opacity: 1;
-  }
-  32%,
-  78% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  92%,
-  100% {
-    opacity: 0;
     transform: translate(0, 0) scale(1);
   }
 }
@@ -509,7 +506,7 @@ a {
 
 /* Sections */
 .section {
-  padding-block: clamp(64px, 9vw, 112px);
+  padding-block: var(--section-pad);
 }
 .section--paper {
   background: var(--paper);
@@ -865,7 +862,7 @@ a {
 .quote-section {
   background: var(--navy);
   color: var(--white);
-  padding-block: clamp(64px, 9vw, 112px);
+  padding-block: var(--section-pad);
 }
 .quote-section__grid {
   display: grid;
@@ -1093,7 +1090,7 @@ a {
   border-top: 1px solid var(--mist);
   color: var(--navy);
   font-size: 0.9375rem;
-  padding-top: clamp(40px, 5vw, 64px);
+  padding-block: var(--section-pad);
 }
 .site-footer a {
   color: var(--navy);
@@ -1213,7 +1210,7 @@ a {
   margin-top: 2px;
 }
 .site-footer__base {
-  padding-block: 14px 20px;
+  padding-block: 14px 0;
   border-top: 1px solid var(--mist);
   text-align: center;
   font-size: 0.8125rem;
@@ -1503,59 +1500,38 @@ a {
   }
 }
 
-/* Scroll-to-next-section control, following blucp.com */
-.scrolldown {
+/* Return-to-top control */
+.scrolltop {
   position: fixed;
-  left: 50%;
+  right: var(--gutter);
   bottom: clamp(16px, 3vh, 30px);
-  transform: translateX(-50%);
   z-index: 30;
   width: 46px;
   height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0;
+  border: 1px solid var(--mist);
   border-radius: 50%;
   cursor: pointer;
   color: var(--navy);
-  background: rgba(1, 31, 91, 0.08);
-  opacity: 0.85;
-  animation: bob 1.8s ease-in-out infinite;
-  transition: opacity 0.3s ease, background-color 0.15s ease, color 0.15s ease;
+  background: var(--white);
+  box-shadow: 0 10px 24px -14px rgba(0, 22, 63, 0.55);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.15s ease, color 0.15s ease;
 }
-.scrolldown:hover {
-  opacity: 1;
-  background: rgba(1, 31, 91, 0.16);
+.scrolltop:hover {
+  background: var(--paper);
   color: var(--orange);
 }
-/* Over the navy quote section */
-.scrolldown--dark {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.12);
-}
-.scrolldown--dark:hover {
-  background: rgba(255, 255, 255, 0.22);
-  color: var(--white);
-}
-.scrolldown.hide {
+.scrolltop.hide {
   opacity: 0;
+  transform: translateY(8px);
   pointer-events: none;
 }
 
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(6px);
-  }
-}
-
 /* The cookie banner shares the bottom edge, so the control steps aside for it. */
-.cookie ~ .scrolldown,
-body:has(.cookie) .scrolldown {
+.cookie ~ .scrolltop,
+body:has(.cookie) .scrolltop {
   opacity: 0;
   pointer-events: none;
 }
@@ -1680,5 +1656,35 @@ body:has(.cookie) .scrolldown {
   }
   .brand img {
     width: 132px;
+  }
+}
+
+/* The clients section leads with the carousel, then the testimonials. */
+.logos--lead {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.testimonials {
+  margin-top: clamp(48px, 6vw, 80px);
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--mist);
+}
+.testimonials__label {
+  font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-align: center;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+@media (min-width: 761px) and (min-height: 640px) {
+  /* The footer is a band like any other, so it fills the screen too. */
+  .site-footer {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
   }
 }

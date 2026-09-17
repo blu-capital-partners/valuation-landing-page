@@ -17,7 +17,11 @@ export default function Hero({ onWhitepaper }: { onWhitepaper: () => void }) {
     <section className="hero" aria-labelledby="hero-title">
       <div className="wrap hero__grid">
         <h1 id="hero-title" className="hero__title">
-          Get an <strong>instant business valuation</strong>, reviewed by a <strong>senior M&amp;A banker</strong>.
+          {/* Punctuation sits inside each emphasised phrase: Google Translate
+              handles text nodes separately and rejoins them with a space, which
+              otherwise strands the comma and full stop. */}
+          Get an <strong>instant business valuation,</strong> reviewed by a{' '}
+          <strong>senior M&amp;A banker.</strong>
         </h1>
         <HeroBadges />
         <div className="hero__copy">

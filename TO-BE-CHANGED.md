@@ -21,6 +21,20 @@ Useful to include when you have it:
 
 ## Done
 
+Shipped 2026-09-17 (fifth round):
+
+- Section padding is one value everywhere: all eight bands are 112px top and
+  bottom, where the hero was 72px and the footer 64/0
+- Removed the chevron; added a return-to-top button that appears once you are a
+  screen down
+- Translations no longer break the layout: the header keeps one row, the hero
+  punctuation stays attached, and the counter is exempt from translation
+- The stats counter animates when it scrolls into view
+- "Our clients" now comes before the testimonials, which have their own heading
+- The email in the FAQ is a mailto link
+- The footer fills the screen like every other band
+- The arrow on "Accurate" is drawn as a real arrow and is visible at rest
+
 Shipped 2026-09-16 (fourth round):
 
 - "Get my quote" no longer wraps to two lines on mobile; the button fits the

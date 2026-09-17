@@ -9,6 +9,46 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 Nothing yet.
 
+## [0.6.0] - 2026-09-17
+
+Nine follow-up changes requested in `TO-BE-CHANGED.md`.
+
+### Added
+
+- A return-to-top button, which appears once the visitor is roughly a screen
+  down and is skipped by keyboard focus while hidden.
+- The credential figures count up when they scroll into view, easing into the
+  final number. Figures are parsed out of their copy, so prefixes and suffixes
+  such as "1m+" survive, and someone who asks for reduced motion sees the final
+  value immediately.
+- A heading over the testimonials, which previously followed the credentials
+  with nothing introducing them.
+
+### Changed
+
+- Every band now carries the same 112px top and bottom padding. The hero was
+  72px and the footer 64px over 0.
+- The footer fills the viewport and centres its content, like the other bands.
+- The clients carousel moves above the testimonials.
+- The scroll control is a return-to-top rather than a scroll-to-next chevron.
+- The arrow on the "Accurate" icon is redrawn as a real arrow - shaft, solid
+  head landing in the bullseye, fletching at the tail - and is drawn at rest
+  rather than appearing only on hover, where it previously also faded out again
+  on a loop.
+
+### Fixed
+
+- Translations no longer break the layout. Three separate causes: header nav
+  items and the call to action wrapped onto a second row once translated, so
+  they are held on one line with a flexing gap; the comma and full stop in the
+  hero headline sat outside their emphasised phrases, and Google Translate,
+  which translates each text node separately and rejoins them with a space,
+  stranded them as "Unternehmensbewertung , geprüft"; and the credential figures
+  froze at zero because Translate replaces the text nodes it touches, leaving
+  React writing to detached ones. The figures are now marked `translate="no"`
+  and rendered as a single text node.
+- The support address in the FAQ answer is a mailto link.
+
 ## [0.5.0] - 2026-09-16
 
 Two follow-up changes requested in `TO-BE-CHANGED.md`.

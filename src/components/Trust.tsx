@@ -1,4 +1,5 @@
 import { CLIENT_LOGOS, CREDENTIALS, TESTIMONIALS } from '../content'
+import CountUp from './CountUp'
 
 function LogoCard({ logo, duplicate, index }: { logo: (typeof CLIENT_LOGOS)[number]; duplicate: boolean; index: number }) {
   const img = <img src={logo.src} alt={duplicate ? '' : logo.alt} loading="lazy" />
@@ -38,7 +39,9 @@ export function Trust() {
         <dl className="creds">
           {CREDENTIALS.map((c) => (
             <div className="cred" key={c.label}>
-              <dt className="cred__figure">{c.figure}</dt>
+              <dt className="cred__figure">
+                <CountUp figure={c.figure} />
+              </dt>
               <dd className="cred__label">{c.label}</dd>
             </div>
           ))}
@@ -50,24 +53,12 @@ export function Trust() {
 
 export function Clients() {
   return (
-    <section id="clients" className="section section--paper" aria-label="What clients say, and who they are">
+    <section id="clients" className="section section--paper" aria-labelledby="clients-title">
       <div className="wrap">
-        <div className="quotes">
-          {TESTIMONIALS.map((t) => (
-            <figure className="quote" key={t.name}>
-              <blockquote>
-                <p>{t.quote}</p>
-              </blockquote>
-              <figcaption>
-                <strong>{t.name}</strong>
-                <span>{t.role}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-
-        <div className="logos">
-          <h3 className="logos__label">Our clients</h3>
+        <div className="logos logos--lead">
+          <h2 className="logos__label" id="clients-title">
+            Our clients
+          </h2>
           {/* Continuous marquee, as on blucp.com: the list is rendered twice so the loop is seamless */}
           <div className="marquee">
             <div className="marquee__track">
@@ -75,6 +66,23 @@ export function Clients() {
                 <LogoCard key={`${l.alt}-${i}`} logo={l} duplicate={i >= CLIENT_LOGOS.length} index={i} />
               ))}
             </div>
+          </div>
+        </div>
+
+        <div className="testimonials">
+          <h2 className="testimonials__label">What they say about working with us</h2>
+          <div className="quotes">
+            {TESTIMONIALS.map((t) => (
+              <figure className="quote" key={t.name}>
+                <blockquote>
+                  <p>{t.quote}</p>
+                </blockquote>
+                <figcaption>
+                  <strong>{t.name}</strong>
+                  <span>{t.role}</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </div>

@@ -1,6 +1,26 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { FAQ } from '../content'
 
+// Answers are stored as plain text, so any address in them is linked here rather
+// than by putting markup into the content file.
+const EMAIL = /([\w.+-]+@[\w-]+\.[\w.]+)/g
+const IS_EMAIL = /^[\w.+-]+@[\w-]+\.[\w.]+$/
+
+function withEmailLinks(text: string) {
+  // split() with a capturing group keeps the matches, so each part is either
+  // surrounding text or a whole address. IS_EMAIL is deliberately not global:
+  // test() on a /g regex carries lastIndex between calls and would skip matches.
+  return text.split(EMAIL).map((part, i) =>
+    IS_EMAIL.test(part) ? (
+      <a key={i} href={`mailto:${part}`}>
+        {part}
+      </a>
+    ) : (
+      part
+    ),
+  )
+}
+
 const DURATION = 260
 const EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
 
@@ -81,7 +101,7 @@ function FaqItem({ q, a, open, onOpen, onClose }: ItemProps) {
         {q}
       </summary>
       <div className="faq__panel" ref={panelRef}>
-        <p>{a}</p>
+        <p>{withEmailLinks(a)}</p>
       </div>
     </details>
   )

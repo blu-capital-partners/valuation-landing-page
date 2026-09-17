@@ -10,7 +10,7 @@ import Faq from './components/Faq'
 import Footer from './components/Footer'
 import WhitepaperDialog from './components/WhitepaperDialog'
 import ConsentBanner from './components/ConsentBanner'
-import ScrollDown from './components/ScrollDown'
+import ScrollTop from './components/ScrollTop'
 
 export default function App() {
   const [whitepaperOpen, setWhitepaperOpen] = useState(false)
@@ -33,7 +33,7 @@ export default function App() {
         <Faq />
       </main>
       <Footer onCookieSettings={() => setConsentOpen(true)} />
-      <ScrollDown />
+      <ScrollTop />
       <WhitepaperDialog open={whitepaperOpen} onClose={() => setWhitepaperOpen(false)} />
       <ConsentBanner forceOpen={consentOpen} onClose={() => setConsentOpen(false)} />
     </>
