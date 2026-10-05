@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import { INDUSTRIES, QUOTE_CONSENT_TEXT } from '../shared/formOptions'
-import { formatEur } from '../shared/pricing'
+import { AFTER_DELIVERY_SURCHARGE_PCT, afterDeliveryFee, formatEur } from '../shared/pricing'
 import { postForm } from '../lib/api'
 import { trackLead } from '../lib/analytics'
+import { clarityEvent } from '../lib/clarity'
 import { CONTACT } from '../content'
 
 const EMBED_URL = import.meta.env.VITE_MS_FORM1_EMBED_URL
@@ -27,6 +28,7 @@ export default function QuoteSection() {
     const result = await postForm<{ valuationPrice: number }>('/api/quote', { ...data, consent: data.consent === 'on' })
     if (result.ok) {
       trackLead('quote', result.valuationPrice)
+      clarityEvent('quote_shown')
       setStatus({ kind: 'done', price: result.valuationPrice, email: data.email })
       return
     }
@@ -62,7 +64,15 @@ export default function QuoteSection() {
             <li>You receive an invoice for the first 50% of the fee and access to a secure upload folder.</li>
           </ul>
           <p className="quote-section__contact">
-            Prefer to talk first? Write to <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
+            Prefer to talk first? Call or{' '}
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>{' '}
+            <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}>{CONTACT.phone}</a>,{' '}
+            <a href={CONTACT.bookingUrl} target="_blank" rel="noreferrer">
+              book a 15-min call
+            </a>
+            , or write to <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
           </p>
         </div>
 
@@ -72,7 +82,19 @@ export default function QuoteSection() {
           ) : status.kind === 'done' ? (
             <div className="result" role="status" aria-live="polite">
               <p className="result__label">Your estimated valuation fee</p>
-              <p className="result__price">{formatEur(status.price)}</p>
+              {/* Both ways to pay: the API returns the upfront fee, the other follows from it. */}
+              <dl className="result__options">
+                <div className="result__option result__option--best">
+                  <dt>
+                    Pay 50% upfront <span className="best-price">Best price</span>
+                  </dt>
+                  <dd className="result__price">{formatEur(status.price)}</dd>
+                </div>
+                <div className="result__option">
+                  <dt>Pay 100% after delivery (+{AFTER_DELIVERY_SURCHARGE_PCT}%)</dt>
+                  <dd className="result__price">{formatEur(afterDeliveryFee(status.price))}</dd>
+                </div>
+              </dl>
               <p>
                 We sent the quote and the link to the valuation request form to <strong>{status.email}</strong>. If it
                 has not arrived within a few minutes, check your spam folder.

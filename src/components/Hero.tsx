@@ -28,14 +28,18 @@ export default function Hero({ onWhitepaper }: { onWhitepaper: () => void }) {
           <p className="hero__lede">
             Submit your company details and receive a valuation offer in less than 60 seconds.
           </p>
-          <div className="hero__actions">
-            <a className="btn btn--primary" href="#quote">
-              Calculate my valuation price
+          {/* The two customer paths, side by side and equal: the self-serve quote, or a banker first. */}
+          <div className="hero__actions hero__actions--paths">
+            <a className="btn btn--primary" href="#quote" data-clarity-event="cta_self_serve" data-clarity-path="self_serve">
+              Get your price in 60 seconds
             </a>
-            <button type="button" className="btn btn--outline" onClick={onWhitepaper}>
-              Why is valuing my business important?
-            </button>
+            <a className="btn btn--outline" href="#talk-first" data-clarity-event="cta_talk_first" data-clarity-path="talk_first">
+              Talk to a banker first
+            </a>
           </div>
+          <button type="button" className="linklike hero__why" onClick={onWhitepaper}>
+            Why is valuing my business important?
+          </button>
           <p className="hero__proof">
             From €4,000. Report in 10 business days, or in 72 hours with Express delivery.
           </p>

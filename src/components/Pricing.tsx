@@ -1,4 +1,11 @@
-import { BASE_FEE_EUR, DELIVERY_OPTIONS, REVENUE_TIERS, formatEur } from '../shared/pricing'
+import {
+  AFTER_DELIVERY_SURCHARGE_PCT,
+  BASE_FEE_EUR,
+  DELIVERY_OPTIONS,
+  REVENUE_TIERS,
+  afterDeliveryFee,
+  formatEur,
+} from '../shared/pricing'
 
 const rangeLabel = (from: number, to: number | null) =>
   to === null ? `€${from}m and above` : from === 0 ? `Under €${to}m` : `€${from}m – €${to}m`
@@ -15,24 +22,29 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="ruler" role="table" aria-label="Valuation fee by annual revenue">
-          <div role="rowgroup" className="ruler__rows">
-            {REVENUE_TIERS.map((tier) => (
-              <div role="row" className="ruler__seg" key={tier.fromEurM}>
-                <span role="cell" className="ruler__fee">
-                  {formatEur(BASE_FEE_EUR + tier.addOnEur)}
-                </span>
-                <span role="cell" className="ruler__addon">
-                  {tier.addOnEur ? `${formatEur(BASE_FEE_EUR)} + ${formatEur(tier.addOnEur)}` : 'Base fee'}
-                </span>
-                <span className="ruler__bar" aria-hidden="true" />
-                <span role="rowheader" className="ruler__range">
-                  {rangeLabel(tier.fromEurM, tier.toEurM)}
-                </span>
-              </div>
-            ))}
-          </div>
-          <p className="ruler__axis">Annual revenue</p>
+        {/* One column per way to pay: 50% upfront (best price), or 100% after delivery at +20%. */}
+        <div className="fees">
+          <table className="fees__table" aria-label="Valuation fee by annual revenue">
+            <thead>
+              <tr>
+                <th scope="col">Annual revenue</th>
+                <th scope="col" className="fees__best">
+                  Pay 50% upfront <span className="best-price">Best price</span>
+                </th>
+                <th scope="col">Pay 100% after delivery (+{AFTER_DELIVERY_SURCHARGE_PCT}%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {REVENUE_TIERS.map((tier) => (
+                <tr key={tier.fromEurM}>
+                  <th scope="row">{rangeLabel(tier.fromEurM, tier.toEurM)}</th>
+                  <td className="fees__best">{formatEur(BASE_FEE_EUR + tier.addOnEur)}</td>
+                  <td>{formatEur(afterDeliveryFee(BASE_FEE_EUR + tier.addOnEur))}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="fine">All fees exclude VAT. Faster delivery is an optional add-on.</p>
         </div>
 
         <div className="pricing__extra">
@@ -59,19 +71,23 @@ export default function Pricing() {
             <p className="fine">Delivery time counts from the day we receive your complete financials.</p>
           </div>
           <div className="payment">
-            <h3>Payment in two parts</h3>
-            <div className="split" aria-hidden="true">
-              <span>50%</span>
-              <span>50%</span>
-            </div>
+            <h3>Two ways to pay</h3>
             <dl className="payment__list">
               <div>
-                <dt>When you sign</dt>
-                <dd>Pay half of the fee online by card to start the valuation.</dd>
+                <dt>
+                  50% upfront, 50% on delivery <span className="best-price">Best price</span>
+                </dt>
+                <dd>
+                  Pay half of the fee online by card when you sign, to start the valuation, and the rest after delivery,
+                  before your review call with the banker.
+                </dd>
               </div>
               <div>
-                <dt>When you receive the report</dt>
-                <dd>Pay the rest after delivery, before your review call with the banker.</dd>
+                <dt>100% after delivery (+{AFTER_DELIVERY_SURCHARGE_PCT}%)</dt>
+                <dd>
+                  Nothing to pay upfront. Once the engagement letter is signed you get the secure upload link straight
+                  away, and you pay the full fee after you receive the report.
+                </dd>
               </div>
             </dl>
           </div>

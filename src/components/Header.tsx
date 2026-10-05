@@ -20,7 +20,7 @@ export default function Header() {
           <a href="#faq">FAQ</a>
         </nav>
         <LanguageSwitcher />
-        <a className="btn btn--primary btn--small" href="#quote">
+        <a className="btn btn--primary btn--small" href="#quote" data-clarity-event="cta_self_serve" data-clarity-path="self_serve">
           Get my quote
         </a>
       </div>

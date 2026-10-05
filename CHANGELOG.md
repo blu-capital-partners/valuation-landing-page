@@ -7,7 +7,28 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 ## [Unreleased]
 
-Nothing yet.
+Two customer paths, the pay-after-delivery price and Clarity events (requested 2026-10-05).
+
+### Added
+
+- Hero: two equal CTAs side by side, "Get your price in 60 seconds" (to the quote form) and
+  "Talk to a banker first" (to the new section). The white paper opens from a text link below them.
+- "Prefer to talk first?" section: call-back form (name, company, email, phone, optional time and
+  message), phone and WhatsApp buttons, and the booking link. It posts to `/api/talk-first`, which
+  hands the request to Power Automate (`POWER_AUTOMATE_TALK_FIRST_WEBHOOK_URL`) like the other forms.
+- How it works shows both routes: "Online in minutes" and "Talk to a banker first".
+- Both prices in the quote result and the fee table: 50% upfront (best price) and 100% after
+  delivery at +20% (EUR 4,800 to 9,600).
+- Microsoft Clarity, after cookie consent, when `VITE_CLARITY_ID` is set; custom events
+  `cta_self_serve`, `cta_talk_first`, `quote_shown`, `talk_form_submitted`, `click_phone`,
+  `click_whatsapp`, `click_book_call`, and the session tag `path` on the first CTA click.
+
+### Changed
+
+- Contact number: +40 728 726 209 (Luca), on the phone and on WhatsApp.
+- The pricing ruler and its 50/50 split bar are replaced by the fee table and "Two ways to pay".
+- FAQ: "When do I pay?" describes both options; "Can I speak to a banker first?" gives the phone,
+  WhatsApp and the form. Phone numbers in FAQ answers are linked.
 
 ## [0.6.2] - 2026-09-17
 

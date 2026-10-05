@@ -55,5 +55,12 @@ export function computeValuationFee(revenueEurM: number, employees: number): Fee
   }
 }
 
+// Two ways to pay (approved 2026-10-05): 50% upfront by card at the fee above, or 100% after
+// delivery at that fee plus this surcharge. Shown on the page; the request step (Form 2, Power
+// Automate) does not offer the choice yet.
+export const AFTER_DELIVERY_SURCHARGE_PCT = 20
+
+export const afterDeliveryFee = (upfrontEur: number) => Math.round(upfrontEur * (100 + AFTER_DELIVERY_SURCHARGE_PCT)) / 100
+
 export const formatEur = (value: number) =>
   new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value)

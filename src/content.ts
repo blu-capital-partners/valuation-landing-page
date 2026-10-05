@@ -1,6 +1,8 @@
 export const CONTACT = {
   email: 'valuation@blucp.com',
-  phone: '+40 726 009 377',
+  // Luca's number (2026-10-05), on the phone and on WhatsApp.
+  phone: '+40 728 726 209',
+  whatsappUrl: 'https://wa.me/40728726209',
   company: 'Blu Capital Partners SRL',
   address: 'HBC Dorobanti, Ermil Pangrati 30A, 4th Floor, Bucharest, Romania',
   mapsUrl:
@@ -44,6 +46,28 @@ export const FOOTER_LINKS = {
     { label: 'EU Projects', href: 'https://blucp.com/eu-projects/' },
   ],
 }
+
+// The two ways in, shown above the steps (which are the online route).
+export const ROUTES = [
+  {
+    key: 'online',
+    title: 'Online in minutes',
+    body: 'Get your price on screen, complete the request form and sign electronically. The three steps below.',
+    link: 'Get your price',
+    href: '#quote',
+    event: 'cta_self_serve',
+    path: 'self_serve',
+  },
+  {
+    key: 'talk',
+    title: 'Talk to a banker first',
+    body: 'A senior banker calls you to discuss your situation and answer your questions. No payment and no documents needed before we talk.',
+    link: 'Ask for a call',
+    href: '#talk-first',
+    event: 'cta_talk_first',
+    path: 'talk_first',
+  },
+] as const
 
 export const STEPS = [
   {
@@ -141,7 +165,7 @@ export const FAQ = [
   },
   {
     q: 'When do I pay?',
-    a: 'You pay 50% when you sign the engagement letter and the remaining 50% after you receive the final report. Both payments are made online by card through a secure payment link on your invoice.',
+    a: 'You choose when you submit the valuation request. With 50% upfront (best price), you pay 50% by card when you sign the engagement letter and the remaining 50% after you receive the final report. With 100% after delivery, the fee is 20% higher: you pay nothing upfront, you get the upload link as soon as the engagement letter is signed, and you pay the full fee after you receive the report.',
   },
   {
     q: 'What information do I need to provide?',
@@ -165,6 +189,6 @@ export const FAQ = [
   },
   {
     q: 'Can I speak to a banker first?',
-    a: 'Yes. Email valuation@blucp.com and a senior banker will set up a short call to discuss your situation.',
+    a: 'Yes. Call or WhatsApp +40 728 726 209, leave your number in the "Prefer to talk first?" form, or email valuation@blucp.com, and a senior banker will set up a short call to discuss your situation. No payment and no documents are needed before we talk.',
   },
 ]

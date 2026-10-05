@@ -1,4 +1,4 @@
-// GA4, Meta Pixel and LinkedIn Insight Tag. Nothing loads until the visitor accepts cookies (GDPR).
+// GA4, Meta Pixel, LinkedIn Insight Tag and Microsoft Clarity. Nothing loads until the visitor accepts cookies (GDPR).
 
 type AnyFn = (...args: unknown[]) => void
 declare global {
@@ -10,6 +10,7 @@ declare global {
     _linkedin_partner_id?: string
     _linkedin_data_partner_ids?: string[]
     lintrk?: AnyFn & { q?: unknown[] }
+    clarity?: AnyFn & { q?: unknown[] }
   }
 }
 
@@ -82,6 +83,13 @@ export function loadTrackers() {
     const lintrk = Object.assign((...args: unknown[]) => lintrk.q!.push(args), { q: [] as unknown[] })
     window.lintrk = lintrk
     addScript('https://snap.licdn.com/li.lms-analytics/insight.min.js')
+  }
+
+  // Clarity's own snippet: calls made before its script arrives are queued and replayed by it.
+  if (env.VITE_CLARITY_ID) {
+    const clarity = Object.assign((...args: unknown[]) => void clarity.q!.push(args), { q: [] as unknown[] })
+    window.clarity = clarity
+    addScript(`https://www.clarity.ms/tag/${encodeURIComponent(env.VITE_CLARITY_ID)}`)
   }
 }
 
