@@ -7,7 +7,6 @@ const API_ROUTES: Record<string, string> = {
   '/api/quote': '/server/quote.ts',
   '/api/whitepaper': '/server/whitepaper.ts',
   '/api/newsletter': '/server/newsletter.ts',
-  '/api/talk-first': '/server/talkFirst.ts',
 }
 
 async function readBody(req: IncomingMessage): Promise<string> {

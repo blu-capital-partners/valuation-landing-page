@@ -63,17 +63,6 @@ export default function QuoteSection() {
             <li>The email links to the valuation request form. Once you submit it, your engagement letter is generated automatically.</li>
             <li>You receive an invoice for the first 50% of the fee and access to a secure upload folder.</li>
           </ul>
-          <p className="quote-section__contact">
-            Prefer to talk first? Call or{' '}
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noreferrer">
-              WhatsApp
-            </a>{' '}
-            <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}>{CONTACT.phone}</a>,{' '}
-            <a href={CONTACT.bookingUrl} target="_blank" rel="noreferrer">
-              book a 15-min call
-            </a>
-            , or write to <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
-          </p>
         </div>
 
         <div className="panel">

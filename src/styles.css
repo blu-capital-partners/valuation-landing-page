@@ -833,14 +833,6 @@ a {
   height: 2px;
   background: var(--orange);
 }
-.quote-section__contact {
-  margin-top: 32px;
-  font-size: 0.9375rem;
-  color: var(--sky);
-}
-.quote-section__contact a {
-  color: var(--white);
-}
 .panel {
   background: var(--white);
   color: var(--ink);
@@ -1721,9 +1713,14 @@ a {
   }
 }
 
+/* Talk first: its own section, the intro beside the ways to reach a banker. No form; the quote form
+   is the page's only one. Short, so it takes its natural height rather than a full screen. */
+#talk-first {
+  min-height: 0;
+}
 .talk-first__grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
 }
@@ -1731,52 +1728,21 @@ a {
   margin-top: 16px;
   color: var(--slate);
   font-size: 1.0625rem;
+  max-width: 52ch;
 }
-.talk-first__intro > .talk-first__promise {
-  font-weight: 600;
-  color: var(--navy);
-}
-.talk-first__direct {
-  display: flex;
-  flex-wrap: wrap;
+.talk-first__options {
+  display: grid;
   gap: 12px;
-  margin-top: 28px;
+  max-width: 380px;
 }
-.talk-first__intro > .talk-first__book {
-  margin-top: 16px;
+.talk-first__email {
+  margin: 4px 0 0;
   font-size: 0.9375rem;
+  color: var(--slate);
 }
-.talk-first__book a {
+.talk-first__email a {
   color: var(--navy);
   font-weight: 600;
-}
-.talk-first .panel {
-  border: 1px solid var(--mist);
-}
-.talk-first__formTitle {
-  margin: 0 0 20px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--navy);
-}
-.field textarea {
-  width: 100%;
-  min-height: 92px;
-  padding: 10px 12px;
-  font: 400 1rem/1.4 var(--font);
-  color: var(--ink);
-  background: var(--white);
-  border: 1px solid #b9c1d0;
-  border-radius: var(--radius);
-  resize: vertical;
-}
-.field textarea:hover {
-  border-color: var(--navy);
-}
-.field textarea:focus-visible {
-  outline: 2px solid var(--navy);
-  outline-offset: 0;
-  border-color: var(--navy);
 }
 @media (max-width: 980px) {
   .talk-first__grid {
@@ -1784,7 +1750,7 @@ a {
   }
 }
 @media (max-width: 480px) {
-  .talk-first__direct .btn {
-    width: 100%;
+  .talk-first__options {
+    max-width: none;
   }
 }

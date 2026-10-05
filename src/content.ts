@@ -61,8 +61,8 @@ export const ROUTES = [
   {
     key: 'talk',
     title: 'Talk to a banker first',
-    body: 'A senior banker calls you to discuss your situation and answer your questions. No payment and no documents needed before we talk.',
-    link: 'Ask for a call',
+    body: 'Speak to a senior banker by phone or WhatsApp, or book a 15-minute call, and get your questions answered before you decide.',
+    link: 'Talk to a banker',
     href: '#talk-first',
     event: 'cta_talk_first',
     path: 'talk_first',
@@ -189,6 +189,6 @@ export const FAQ = [
   },
   {
     q: 'Can I speak to a banker first?',
-    a: 'Yes. Call or WhatsApp +40 728 726 209, leave your number in the "Prefer to talk first?" form, or email valuation@blucp.com, and a senior banker will set up a short call to discuss your situation. No payment and no documents are needed before we talk.',
+    a: 'Yes. Call or WhatsApp +40 728 726 209, book a 15-minute call online, or email valuation@blucp.com, and a senior banker will discuss your situation and answer your questions.',
   },
 ]

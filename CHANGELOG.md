@@ -13,14 +13,14 @@ Two customer paths, the pay-after-delivery price and Clarity events (requested 2
 
 - Hero: two equal CTAs side by side, "Get your price in 60 seconds" (to the quote form) and
   "Talk to a banker first" (to the new section). The white paper opens from a text link below them.
-- "Prefer to talk first?" section: call-back form (name, company, email, phone, optional time and
-  message), phone and WhatsApp buttons, and the booking link. It posts to `/api/talk-first`, which
-  hands the request to Power Automate (`POWER_AUTOMATE_TALK_FIRST_WEBHOOK_URL`) like the other forms.
+- "Prefer to talk first?" section of its own: phone, WhatsApp and "Book a 15-min call" buttons, and
+  the email address. It has no form: the quote form is the page's only one (the call-back form and
+  `/api/talk-first` were dropped the same day).
 - How it works shows both routes: "Online in minutes" and "Talk to a banker first".
 - Both prices in the quote result and the fee table: 50% upfront (best price) and 100% after
   delivery at +20% (EUR 4,800 to 9,600).
 - Microsoft Clarity, after cookie consent, when `VITE_CLARITY_ID` is set; custom events
-  `cta_self_serve`, `cta_talk_first`, `quote_shown`, `talk_form_submitted`, `click_phone`,
+  `cta_self_serve`, `cta_talk_first`, `quote_shown`, `click_phone`,
   `click_whatsapp`, `click_book_call`, and the session tag `path` on the first CTA click.
 
 ### Changed
@@ -28,7 +28,12 @@ Two customer paths, the pay-after-delivery price and Clarity events (requested 2
 - Contact number: +40 728 726 209 (Luca), on the phone and on WhatsApp.
 - The pricing ruler and its 50/50 split bar are replaced by the fee table and "Two ways to pay".
 - FAQ: "When do I pay?" describes both options; "Can I speak to a banker first?" gives the phone,
-  WhatsApp and the form. Phone numbers in FAQ answers are linked.
+  WhatsApp, the booking link and the email. Phone numbers in FAQ answers are linked.
+
+### Removed
+
+- The "Prefer to talk first?" line under the quote form's intro: the talk-first section carries it.
+- "No payment and no documents needed before we talk" (talk-first section, How it works, FAQ).
 
 ## [0.6.2] - 2026-09-17
 

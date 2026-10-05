@@ -49,9 +49,3 @@ export const QUOTE_CONSENT_TEXT =
 
 export const WHITEPAPER_CONSENT_TEXT =
   'I consent to the processing of my personal data for the purpose of receiving the valuation white paper.'
-
-export const TALK_FIRST_CONSENT_TEXT =
-  'I consent to the processing of my personal data so that a banker can contact me about a valuation.'
-
-// Preferred time for the talk-first call-back, Romanian time.
-export const CALL_TIMES = ['Morning (9:00–12:00)', 'Midday (12:00–15:00)', 'Afternoon (15:00–18:00)', 'Any time'] as const
