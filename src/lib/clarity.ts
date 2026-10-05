@@ -11,7 +11,6 @@ export const CLARITY_EVENTS = [
   'quote_shown',
   'choice_upfront',
   'choice_after_delivery',
-  'talk_form_submitted',
   'click_phone',
   'click_whatsapp',
   'click_book_call',
