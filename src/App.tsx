@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useAnchorScroll } from './lib/useAnchorScroll'
+import { useClarityClicks } from './lib/clarity'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Pricing from './components/Pricing'
 import { Trust, Clients } from './components/Trust'
 import QuoteSection from './components/QuoteSection'
+import TalkFirst from './components/TalkFirst'
 import Faq from './components/Faq'
 import Footer from './components/Footer'
 import WhitepaperDialog from './components/WhitepaperDialog'
@@ -15,6 +17,7 @@ export default function App() {
   const [whitepaperOpen, setWhitepaperOpen] = useState(false)
   const [consentOpen, setConsentOpen] = useState(false)
   useAnchorScroll()
+  useClarityClicks()
 
   return (
     <>
@@ -29,6 +32,7 @@ export default function App() {
         <Trust />
         <Clients />
         <QuoteSection />
+        <TalkFirst />
         <Faq />
       </main>
       <Footer onCookieSettings={() => setConsentOpen(true)} />

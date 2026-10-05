@@ -22,7 +22,7 @@ export default function ConsentBanner({ forceOpen, onClose }: { forceOpen: boole
   return (
     <div className="cookie" role="region" aria-label="Cookie consent">
       <p>
-        We use cookies to measure how visitors find this page (Google Analytics, Meta and LinkedIn). They load only
+        We use cookies to measure how visitors find this page (Google Analytics, Meta, LinkedIn and Microsoft Clarity). They load only
         if you accept. <a href={CONTACT.privacyUrl}>Privacy policy</a>
         {forceOpen && !undecided && <> Your current choice: {readConsent() === 'accepted' ? 'accepted' : 'rejected'}.</>}
       </p>

@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { FAQ } from '../content'
 
-// Answers are stored as plain text, so any address in them is linked here rather
-// than by putting markup into the content file.
-const EMAIL = /([\w.+-]+@[\w-]+\.[\w.]+)/g
+// Answers are stored as plain text, so any address or phone number in them is linked here
+// rather than by putting markup into the content file.
+const EMAIL = /([\w.+-]+@[\w-]+\.[\w.]+|\+\d[\d ]{7,}\d)/g
 const IS_EMAIL = /^[\w.+-]+@[\w-]+\.[\w.]+$/
+const IS_PHONE = /^\+\d[\d ]{7,}\d$/
 
 function withEmailLinks(text: string) {
   // split() with a capturing group keeps the matches, so each part is either
@@ -13,6 +14,10 @@ function withEmailLinks(text: string) {
   return text.split(EMAIL).map((part, i) =>
     IS_EMAIL.test(part) ? (
       <a key={i} href={`mailto:${part}`}>
+        {part}
+      </a>
+    ) : IS_PHONE.test(part) ? (
+      <a key={i} href={`tel:${part.replace(/\s/g, '')}`}>
         {part}
       </a>
     ) : (

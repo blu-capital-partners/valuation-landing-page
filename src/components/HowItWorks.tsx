@@ -1,4 +1,4 @@
-import { STEPS } from '../content'
+import { ROUTES, STEPS } from '../content'
 
 export default function HowItWorks() {
   return (
@@ -6,8 +6,19 @@ export default function HowItWorks() {
       <div className="wrap">
         <div className="section__head">
           <h2 id="how-title">How it works</h2>
-          <p>Three steps, all online. You only speak to us when you want to.</p>
+          <p>Choose how you start: online in minutes, or with a banker on the phone first.</p>
         </div>
+        <ul className="routes">
+          {ROUTES.map((route) => (
+            <li className={`route route--${route.key}`} key={route.key}>
+              <h3 className="route__title">{route.title}</h3>
+              <p className="route__body">{route.body}</p>
+              <a className="route__link" href={route.href} data-clarity-event={route.event} data-clarity-path={route.path}>
+                {route.link}
+              </a>
+            </li>
+          ))}
+        </ul>
         <ol className="steps">
           {STEPS.map((step, i) => (
             <li className="step" key={step.title}>

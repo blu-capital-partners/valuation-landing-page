@@ -62,6 +62,27 @@ Payload sent to Power Automate:
 
 Use this as the JSON schema of the "When an HTTP request is received" trigger. Because the price arrives in the payload, the flow does not need to repeat the pricing rules.
 
+## Talk-first flow
+
+`POST /api/talk-first` validates the "Prefer to talk first?" form and posts it to the Power Automate
+HTTP trigger in `POWER_AUTOMATE_TALK_FIRST_WEBHOOK_URL`. The flow should email the request to
+valuation@blucp.com so a banker calls back. Payload:
+
+```json
+{
+  "source": "valuation-landing-page",
+  "form": "talk_first_callback_request",
+  "submittedAt": "2026-10-05T09:00:00.000Z",
+  "notify": "valuation@blucp.com",
+  "contact": { "fullName": "Ana Pop", "email": "ana@example.ro", "phone": "+40 721 000 000" },
+  "company": { "name": "Example SRL" },
+  "preferredTime": "Morning (9:00–12:00)",
+  "message": null,
+  "consent": { "given": true, "text": "I consent to the processing of my personal data so that a banker can contact me about a valuation.", "at": "2026-10-05T09:00:00.000Z" },
+  "attribution": { "utm_source": "linkedin", "landingPage": "/", "referrer": "" }
+}
+```
+
 To embed the Microsoft Form instead of the native form, set `VITE_MS_FORM1_EMBED_URL`. The page then renders the form in an iframe, and pricing moves back into Power Automate.
 
 ## Deploy to Vercel from GitHub

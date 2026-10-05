@@ -7,4 +7,5 @@ interface ImportMetaEnv {
   readonly VITE_META_PIXEL_ID?: string
   readonly VITE_LINKEDIN_PARTNER_ID?: string
   readonly VITE_LINKEDIN_CONVERSION_ID?: string
+  readonly VITE_CLARITY_ID?: string
 }
